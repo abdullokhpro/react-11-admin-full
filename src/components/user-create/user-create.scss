@@ -1,0 +1,48 @@
+.create-user {
+  &__container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 10px;
+    margin: 0 auto;
+  }
+
+  &__input {
+    padding: 10px 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #aaa;
+  }
+
+  &__btn {
+    padding: 10px 5px;
+    background-color: rgb(37, 156, 203);
+    color: #fff;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      border: 1px solid rgb(37, 156, 203);
+      background-color: transparent;
+      color: rgb(37, 156, 203);
+    }
+
+    &:active {
+      transform: scale(0.95);
+      border: 1px solid rgb(37, 156, 203);
+      background-color: transparent;
+      color: rgb(37, 156, 203);
+    }
+  }
+}
