@@ -1,5 +1,7 @@
 .product-user {
+  padding-top: 50px;
   &__container {
+    padding: 20px;
     width: 90%;
     margin: 0 auto;
   }
@@ -46,4 +48,9 @@
     border-radius: 5px;
     cursor: pointer;
   }
+}
+
+.user__title {
+  text-align: center;
+  padding-top: 20px;
 }

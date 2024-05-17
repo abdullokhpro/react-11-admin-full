@@ -13,19 +13,21 @@ const Navbar = () => {
   return (
     <header className="header">
       <h2>Logo</h2>
-      <NavLink className="header__link" to={"/"}>
-        Home
-      </NavLink>
-      <NavLink className="header__link" to={"/user"}>
-        User
-      </NavLink>
+      <ul className="header__list">
+        <NavLink className="header__link" to={"/"}>
+          Home
+        </NavLink>
+        <NavLink className="header__link" to={"/user"}>
+          User
+        </NavLink>
 
-      <NavLink
-        className="header__link "
-        to={isLogin ? "/admin/create" : "/register"}
-      >
-        {isLogin ? "Account" : "Login"}
-      </NavLink>
+        <NavLink
+          className="header__link "
+          to={isLogin ? "/admin/create" : "/register"}
+        >
+          {isLogin ? "Account" : "Login"}
+        </NavLink>
+      </ul>
     </header>
   );
 };

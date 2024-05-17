@@ -1,8 +1,14 @@
 .products {
+  padding-top: 50px;
   &__container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
     grid-gap: 50px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
   }
 
   &__card {
@@ -47,4 +53,9 @@
     border-radius: 5px;
     cursor: pointer;
   }
+}
+
+.home__title {
+  text-align: center;
+  margin-top: 20px;
 }

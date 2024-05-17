@@ -1,17 +1,25 @@
-.header{
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: #000;
+  color: #fff;
+  gap: 40px;
+  a {
+    text-decoration: none;
+  }
+
+  &__list {
     display: flex;
-    align-items: center;
-    padding: 20px;
-    background: #ddd;
     gap: 40px;
-    a{
-        text-decoration: none;
-    }
-    &__link{
-        color: #000;
-    }
-    .active{
-        color: red;
-        text-decoration: underline;
-    }
+  }
+
+  &__link {
+    color: #fff;
+  }
+  .active {
+    color: red;
+    text-decoration: underline;
+  }
 }

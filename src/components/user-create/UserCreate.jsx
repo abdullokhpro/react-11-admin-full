@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./user-create.scss";
 import axios from "../../api";
 import { toast } from "react-toastify";
 
-let initialState = {
-  firstName: "",
-  lastName: "",
-  age: "",
-};
-
 const UserCreate = () => {
-  const [userProduct, setUserProduct] = useState(initialState);
   let [loading, setLoading] = useState(false);
+
+  const nameRef = useRef();
+  const lastNameRef = useRef();
+  const ageRef = useRef();
 
   let handleUserCreate = (e) => {
     e.preventDefault();
     setLoading(true);
 
+    let obj = {
+      firstName: nameRef.current.value,
+      lastName: lastNameRef.current.value,
+      age: ageRef.current.value,
+    };
+
     axios
-      .post("/user", userProduct)
+      .post("/user", obj)
       .then((res) => {
-        setUserProduct(initialState);
+        nameRef.current.value = "";
+        lastNameRef.current.value = "";
+        ageRef.current.value = "";
         toast.success("user qo'shildi");
       })
       .catch((err) => console.log(err))
@@ -42,37 +47,21 @@ const UserCreate = () => {
               className="create-user__input"
               type="text"
               placeholder="Add name"
-              value={userProduct.firstName}
-              onChange={(e) =>
-                setUserProduct((prev) => ({
-                  ...prev,
-                  firstName: e.target.value,
-                }))
-              }
+              ref={nameRef}
             />
             <input
               required
               className="create-user__input"
               type="text"
               placeholder="Add surname"
-              value={userProduct.lastName}
-              onChange={(e) =>
-                setUserProduct((prev) => ({
-                  ...prev,
-                  lastName: e.target.value,
-                }))
-              }
+              ref={lastNameRef}
             />
             <input
               required
               className="create-user__input"
               type="number"
               placeholder="Add age"
-              value={userProduct.age}
-              onChange={(e) =>
-                setUserProduct((prev) => ({ ...prev, age: e.target.value }))
-              }
-              v
+              ref={ageRef}
             />
             <button disabled={loading} className="create-user__btn">
               {loading ? "Loading..." : "Add"}

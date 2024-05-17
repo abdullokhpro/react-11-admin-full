@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./products.scss";
 import axios from "../../api";
+import EditProductModel from "../edit-product-model/EditProductModel";
 
 const Products = ({ data, isAdmin, setReload }) => {
+  let [editProduct, setEditProduct] = useState(null);
+
   let handleDelete = (id) => {
     if (confirm("are you sure")) {
       axios
         .delete(`/products/${id}`)
         .then((res) => {
           setReload((prev) => !prev);
-          console.log(res);
         })
         .catch((err) => console.log(err));
     }
+  };
+
+  const handleEdit = (product) => {
+    setEditProduct(product);
   };
 
   let productItems = data?.map((el) => (
@@ -25,7 +31,9 @@ const Products = ({ data, isAdmin, setReload }) => {
 
       {isAdmin ? (
         <>
-          <button className="products__edit">Edit</button>
+          <button onClick={() => handleEdit(el)} className="products__edit">
+            Edit
+          </button>
           <button
             className="products__delete"
             onClick={() => handleDelete(el.id)}
@@ -39,9 +47,20 @@ const Products = ({ data, isAdmin, setReload }) => {
     </div>
   ));
   return (
-    <div className="products">
-      <div className="container products__container">{productItems}</div>
-    </div>
+    <>
+      <div className="products">
+        <div className="container products__container">{productItems}</div>
+      </div>
+      {editProduct ? (
+        <EditProductModel
+          setReload={setReload}
+          data={editProduct}
+          setData={setEditProduct}
+        />
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

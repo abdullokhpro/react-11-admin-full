@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "../../api";
 import "./user-product.scss";
+import UserPorductModal from "../user-product-modal/UserPorductModal";
 
 const UserProduct = ({ data, isAdmin, setReload }) => {
+  let [editUser, setEditUser] = useState(null);
+
   console.log(isAdmin);
   let handleUserDelete = (id) => {
     if (confirm("are you sure")) {
@@ -13,6 +16,10 @@ const UserProduct = ({ data, isAdmin, setReload }) => {
         })
         .catch((err) => console.log(err));
     }
+  };
+
+  let handleUserEdit = (product) => {
+    setEditUser(product);
   };
 
   let productUserItems = data?.map((el) => (
@@ -27,7 +34,12 @@ const UserProduct = ({ data, isAdmin, setReload }) => {
 
         {isAdmin ? (
           <>
-            <button className="product-user__edit">edit</button>
+            <button
+              onClick={() => handleUserEdit(el)}
+              className="product-user__edit"
+            >
+              edit
+            </button>
             <button
               onClick={() => handleUserDelete(el.id)}
               className="product-user__delete"
@@ -49,6 +61,16 @@ const UserProduct = ({ data, isAdmin, setReload }) => {
           <div className="product-user__cards">{productUserItems}</div>
         </div>
       </div>
+
+      {editUser ? (
+        <UserPorductModal
+          setData={setEditUser}
+          data={editUser}
+          setReload={setReload}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

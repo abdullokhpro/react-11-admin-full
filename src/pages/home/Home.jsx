@@ -6,7 +6,7 @@ const Home = () => {
   console.log(data);
   return (
     <div className="home">
-      <h2>Home</h2>
+      <h2 className="home__title">Home</h2>
       <Products data={data} />
     </div>
   );
